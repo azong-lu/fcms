@@ -1,7 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>
-  <RouterView></RouterView>
-</template>
+<template>左侧边</template>
 
 <style scoped></style>

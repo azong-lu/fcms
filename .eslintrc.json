@@ -26,7 +26,15 @@
         }
       }
     ],
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "vue/multi-word-component-names": "off",
+    "no-console": "error"
   },
-  "ignorePatterns": ["**/*.css", "**/*.scss", "**/*.png", "**/*.svg"]
+  "ignorePatterns": [
+    "**/*.css",
+    "**/*.less",
+    "**/*.png",
+    "**/*.svg",
+    "**/*.jpg"
+  ]
 }
