@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "prettier": "prettier --write .",
     "prepare": "husky install",
     "lint": "lint-staged",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"src/**/*.{vue,ts,tsx}\" --fix",
+    "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,vue,html,md}\"",
     "lint:style": "stylelint --fix  **/*.{css,less,.vue}"
   },
   "dependencies": {
@@ -62,8 +63,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,vue}": [
-      "prettier",
-      "eslint"
+      "npm run lint:prettier",
+      "npm run lint:eslint"
     ],
     "**/*.{css,less,vue}": [
       "npm run lint:style"
