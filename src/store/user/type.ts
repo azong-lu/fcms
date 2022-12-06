@@ -1,4 +1,4 @@
-import { IResponse, a } from '@/service/request/type'
+import { IResponse, a, b } from '@/service/request/type'
 
 export interface IGetTokenResonse extends IResponse {
   result: { token: string }
