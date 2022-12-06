@@ -31,10 +31,10 @@
     "no-console": "error"
   },
   "ignorePatterns": [
-    "**/*.css",
-    "**/*.less",
-    "**/*.png",
-    "**/*.svg",
-    "**/*.jpg"
+    // "**/*.css",
+    // "**/*.less",
+    // "**/*.png",
+    // "**/*.svg",
+    // "**/*.jpg"
   ]
 }
