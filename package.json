@@ -10,7 +10,9 @@
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "lint": "lint-staged",
-    "lint:style": "stylelint --fix  **/*.{css,less,.vue}"
+    "lint:style": "stylelint --fix  **/*.{css,less,.vue}",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"src/**/*.{vue,ts,tsx}\" --fix",
+    "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,vue,html,md}\""
   },
   "dependencies": {
     "axios": "^1.2.0",
