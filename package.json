@@ -64,8 +64,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,vue}": [
-      "prettier",
-      "eslint"
+      "npm run lint:prettier",
+      "npm run lint:eslint"
     ],
     "**/*.{css,less,vue}": [
       "npm run lint:style"
