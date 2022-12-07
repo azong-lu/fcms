@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { FormRules, FormInstance } from 'element-plus'
-import { useUsersStore } from '@/store/user/user'
+import { useUsersStore } from '@/store/user'
 
 const userStore = useUsersStore()
 
@@ -62,22 +62,25 @@ const handleSubmit = () => {
 
 <style scoped lang="less">
 .login-wrapper {
-  background: url('@/assets/login_bg.jpg') no-repeat;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: url('@/assets/login_bg.jpg') no-repeat;
+  background-size: cover;
+
   .card-header {
-    text-align: center;
     font-weight: bold;
     font-size: 1.3889rem;
+    text-align: center;
   }
+
   .el-card-wrapper {
-    border-radius: 1.5117rem;
     width: 34.7222rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(255 255 255 / 80%);
+    border-radius: 1.5117rem;
+
     .el-button {
       flex: 1;
       height: 2.7778rem;

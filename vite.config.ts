@@ -1,11 +1,15 @@
 // vite3.1.1不支持commonJS
 import { resolve } from 'path'
+// import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import { viteMockServe } from 'vite-plugin-mock'
+// const pathSrc = path.resolve(__dirname, 'src')
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
@@ -20,10 +24,25 @@ export default defineConfig({
       logger: true
     }),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          prefix: 'Icon'
+        })
+      ]
+      // dts: path.resolve(pathSrc, 'auto-imports.d.ts')
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          enabledCollections: ['ep']
+        })
+      ]
+      // dts: path.resolve(pathSrc, 'components.d.ts')
+    }),
+    Icons({
+      autoInstall: true
     })
   ],
   resolve: {

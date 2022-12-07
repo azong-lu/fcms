@@ -10,7 +10,7 @@ export const useUsersStore = defineStore('users', {
   state: (): IUsersStore => {
     return {
       token: undefined,
-      userInfo: {}
+      userInfo: undefined
     }
   },
   actions: {
