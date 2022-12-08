@@ -24,13 +24,19 @@
     "removeComments": false,
     "strictFunctionTypes": false,
     "baseUrl": "./",
-    "types": ["vite/client", "node"],
-    "typeRoots": ["./node_modules/@types/", "./types"],
+    "types": ["vite/client", "node", "element-plus/global"],
+    "typeRoots": ["./node_modules/@types/"],
     "paths": {
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/vite-env.d.tsd.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,4 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
+import { Random } from 'mockjs'
 import {
   requestParams,
   getRequestToken,
@@ -39,30 +40,69 @@ export function createFakeUserList() {
       organization: '某大型公司CTO',
       location: '中国',
       email: '8888@china.com',
-      auths: [],
       is_admin: 0,
       dev_languages: 'JavaScript/Vue/React/Node/PHP',
       blog_github: 'https://github.com/MaleWeb',
       blog_juejin: 'https://juejin.cn/user/3016715636842622',
       blog_zhihu: 'https://www.zhihu.com/people/blind_monk',
       role: 'user',
-      pages: [
+      auths: [
+        {
+          path: '/home',
+          title: '来吧，展示',
+          type: 2,
+          id: Random.id()
+        },
         {
           path: '/secondpage',
           title: '二级标题(大标题一)',
+          type: 1,
+          id: Random.id(),
           children: [
-            { path: '/secondpage/one', title: '二级标题一' },
-            { path: '/secondpage/two', title: '二级标题一' },
-            { path: '/secondpage/three', title: '二级标题一' }
+            {
+              path: '/secondpage/one',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            },
+            {
+              path: '/secondpage/two',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            },
+            {
+              path: '/secondpage/three',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            }
           ]
         },
         {
           path: '/pagethree',
           title: '二级标题(大标题二)',
+          type: 1,
+          id: Random.id(),
           children: [
-            { path: '/pagethree/one', title: '二级标题一' },
-            { path: '/pagethree/two', title: '二级标题一' },
-            { path: '/pagethree/three', title: '二级标题一' }
+            {
+              path: '/pagethree/one',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            },
+            {
+              path: '/pagethree/two',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            },
+            {
+              path: '/pagethree/three',
+              title: '二级标题一',
+              type: 2,
+              id: Random.id()
+            }
           ]
         }
       ]

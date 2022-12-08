@@ -9,7 +9,7 @@ const { userInfo } = useUsersStore()
   <div class="nav-header-wrapper">
     <div class="nav-header-top">
       <div class="folder-icon">
-        <!-- <el-icon><Fold /></el-icon> -->
+        <el-icon><Icon-Fold /></el-icon>
       </div>
       <div class="user-info-wrapper">
         <el-avatar :src="userInfo?.avatar" />

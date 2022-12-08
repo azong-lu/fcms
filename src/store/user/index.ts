@@ -12,6 +12,20 @@ export const useUsersStore = defineStore('users', {
       userInfo: undefined
     }
   },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+        paths: ['token', 'userInfo']
+      }
+      // {
+      //   key: 'userInfo',
+      //   storage: localStorage,
+      //   paths: ['userInfo']
+      // }
+    ]
+  },
   actions: {
     async getTokenAction(params: IGetTokenParams) {
       // 获取token
