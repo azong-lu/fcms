@@ -62,11 +62,11 @@
     "vue-tsc": "^1.0.9"
   },
   "lint-staged": {
-    "**/*.{js,jsx,tsx,ts,vue}": [
+    "src/*.{js,jsx,tsx,ts,vue}": [
       "npm run lint:prettier",
       "npm run lint:eslint"
     ],
-    "**/*.{css,less,vue}": [
+    "src/*.{css,less,vue}": [
       "npm run lint:style"
     ]
   }
