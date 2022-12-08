@@ -10,7 +10,10 @@ export function mapAuthToRoutes(auths: IAuth[]) {
       if (item.type === 2) {
         const router = route.find((i) => i.path === item.path)
         if (router)
-          allRoutes.push({ ...router, meta: { ...router.meta, require: true } })
+          allRoutes.push({
+            ...router,
+            meta: { ...router.meta, require: true, title: item.title }
+          })
       } else {
         setRoute(item.children)
       }

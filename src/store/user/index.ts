@@ -42,7 +42,8 @@ export const useUsersStore = defineStore('users', {
       const res = await getUserInfoApi()
       const { result } = res
       this.userInfo = result
-      mapAuthToRoutes(result.auths).forEach((item) => {
+      const allRoutes = mapAuthToRoutes(result.auths)
+      allRoutes.forEach((item) => {
         router.addRoute('/', item)
       })
       // 跳转首页

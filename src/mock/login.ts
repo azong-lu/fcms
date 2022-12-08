@@ -67,39 +67,39 @@ export function createFakeUserList() {
             },
             {
               path: '/secondpage/two',
-              title: '二级标题一',
+              title: '二级标题二',
               type: 2,
               id: Random.id()
             },
             {
               path: '/secondpage/three',
-              title: '二级标题一',
+              title: '二级标题三',
               type: 2,
               id: Random.id()
             }
           ]
         },
         {
-          path: '/pagethree',
+          path: '/threepage',
           title: '二级标题(大标题二)',
           type: 1,
           id: Random.id(),
           children: [
             {
-              path: '/pagethree/one',
-              title: '二级标题一',
+              path: '/threepage/one',
+              title: '二级标题四',
               type: 2,
               id: Random.id()
             },
             {
-              path: '/pagethree/two',
-              title: '二级标题一',
+              path: '/threepage/two',
+              title: '二级标题五',
               type: 2,
               id: Random.id()
             },
             {
-              path: '/pagethree/three',
-              title: '二级标题一',
+              path: '/threepage/three',
+              title: '二级标题六',
               type: 2,
               id: Random.id()
             }

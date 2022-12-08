@@ -1,13 +1,28 @@
 <script setup lang="ts">
 import { useUsersStore } from '@/store/user'
 import { IAuth } from '@/store/user/type'
+import { useTagsStore } from '@/store/tags'
 import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
 const router = useRouter()
 
 const { userInfo: { auths = [] } = {} } = useUsersStore()
 
+const currentPath = ref<string>()
+
+watch(
+  () => router,
+  (newval) => {
+    currentPath.value = newval.currentRoute.value.fullPath
+  },
+  {
+    immediate: true
+  }
+)
+
 const handleMenuItemClick = (item: IAuth) => {
   router.push(item.path)
+  useTagsStore().addTagAction(item)
 }
 </script>
 
@@ -18,7 +33,7 @@ const handleMenuItemClick = (item: IAuth) => {
       <span>Vite+Vue+Ts</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="currentPath"
       class="el-menu-vertical"
       background-color="#0c2135"
       text-color="#b7bdc3"
@@ -43,7 +58,7 @@ const handleMenuItemClick = (item: IAuth) => {
         </template>
         <!-- 一级菜单 -->
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.path">
+          <el-menu-item :index="item.path" @click="handleMenuItemClick(item)">
             <span>{{ item.title }}</span>
           </el-menu-item>
         </template>

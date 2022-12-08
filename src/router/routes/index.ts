@@ -19,5 +19,20 @@ export const route: RouteRecordRaw[] = [
     path: '/secondpage/three',
     component: () => import('@/views/secondpage/SecondPageThree.vue'),
     meta: { title: '二级标题三' }
+  },
+  {
+    path: '/threepage/one',
+    component: () => import('@/views/threepage/ThreePageOne.vue'),
+    meta: { title: '二级标题四' }
+  },
+  {
+    path: '/threepage/two',
+    component: () => import('@/views/threepage/ThreePageTwo.vue'),
+    meta: { title: '二级标题五' }
+  },
+  {
+    path: '/threepage/three',
+    component: () => import('@/views/threepage/ThreePageThree.vue'),
+    meta: { title: '二级标题六' }
   }
 ]
