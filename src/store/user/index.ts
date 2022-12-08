@@ -2,9 +2,8 @@ import { getTokenApi, getUserInfoApi } from '@/api/login/loginApi'
 import { defineStore } from 'pinia'
 import { setToken } from '@/utils/auth'
 import type { IGetTokenParams, IGetTokenResonse, IUsersStore } from './type'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
+import router from '@/router'
+import { mapAuthToRoutes } from '@/utils'
 
 export const useUsersStore = defineStore('users', {
   state: (): IUsersStore => {
@@ -29,7 +28,9 @@ export const useUsersStore = defineStore('users', {
       const res = await getUserInfoApi()
       const { result } = res
       this.userInfo = result
-      localStorage.setItem('userInfo', result)
+      mapAuthToRoutes(result.auths).forEach((item) => {
+        router.addRoute('/', item)
+      })
       // 跳转首页
       router.push('/home')
     }

@@ -18,8 +18,10 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     Layout: typeof import('./src/components/Layout/index.vue')['default']
     NavHeader: typeof import('./src/components/NavHeader/index.vue')['default']
+    NavSideBar: typeof import('./src/components/NavSideBar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./src/components/SideBar/index.vue')['default']
+    TagsView: typeof import('./src/components/TagsView/index.vue')['default']
   }
 }

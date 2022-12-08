@@ -26,12 +26,15 @@ router.beforeEach((to) => {
   if (to.path !== '/login') {
     if (!hasToken()) {
       return '/login'
-    } else if (!to.meta.require) {
-      const { userInfo: { auths = [] } = {} } = useUsersStore()
-      mapAuthToRoutes(auths).forEach((item) => {
-        router.addRoute('/', item)
-      })
-      return to.path
+    } else {
+      if (!to.meta.require) {
+        const { userInfo: { auths = [] } = {} } = useUsersStore()
+        mapAuthToRoutes(auths).forEach((item) => {
+          router.addRoute('/', item)
+        })
+
+        // return to.path
+      } else return
     }
   }
 })
