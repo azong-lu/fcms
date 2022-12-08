@@ -5,37 +5,13 @@ import { hasToken } from '@/utils/auth'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/home',
+    component: () => import('@/components/Layout/index.vue'),
+    children: []
   },
   {
     path: '/login',
     component: () => import('@/views/login/Login.vue')
-  },
-  {
-    path: '/home',
-    component: () => import('@/views/home/Home.vue')
-  },
-  {
-    path: '/secondpage',
-    redirect: '/secondpage/one',
-    meta: { title: '一级标题' },
-    children: [
-      {
-        path: '/secondpage/one',
-        component: () => import('@/views/secondpage/SecondPageOne.vue'),
-        meta: { title: '二级标题一' }
-      },
-      {
-        path: '/secondpage/two',
-        component: () => import('@/views/secondpage/SecondPageTwo.vue'),
-        meta: { title: '二级标题二' }
-      },
-      {
-        path: '/secondpage/three',
-        component: () => import('@/views/secondpage/SecondPageThree.vue'),
-        meta: { title: '二级标题三' }
-      }
-    ]
   }
 ]
 

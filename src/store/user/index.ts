@@ -1,4 +1,4 @@
-import { getTokenApi, getUserInfoApi } from '@/api/login/indexApi'
+import { getTokenApi, getUserInfoApi } from '@/api/login/loginApi'
 import { defineStore } from 'pinia'
 import { setToken } from '@/utils/auth'
 import type { IGetTokenParams, IGetTokenResonse, IUsersStore } from './type'
