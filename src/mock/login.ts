@@ -21,7 +21,14 @@ export function createFakeUserList() {
       organization: '某大型公司CTO',
       location: '中国',
       email: '896226896@qq.com',
-      auths: [],
+      auths: [
+        {
+          path: '/home',
+          title: '来吧，展示',
+          type: 2,
+          id: Random.id()
+        }
+      ],
       is_admin: 1,
       dev_languages: 'JavaScript/Vue/React/Node/PHP',
       blog_github: 'https://github.com/MaleWeb',
@@ -140,6 +147,22 @@ export default [
         return errorResult('未获得相应的用户信息')
       }
       return successResult(checkUser)
+    }
+  },
+  {
+    url: '/user/logout',
+    timeout: 200,
+    method: 'post',
+    response: (request: requestParams) => {
+      const token = getRequestToken(request)
+      if (!token) return errorResult('token缺失!')
+      const checkUser = createFakeUserList().find(
+        (item) => `${TokenPrefix}${item.token}` === token
+      )
+      if (!checkUser) {
+        return errorResult('token缺失!')
+      }
+      return successResult('Token 已失效')
     }
   }
 ] as MockMethod[]

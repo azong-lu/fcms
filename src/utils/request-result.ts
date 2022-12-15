@@ -15,7 +15,7 @@ export function getRequestToken({
 
 export function errorResult(
   message = 'Request failed',
-  { code = -1, result = null } = {}
+  { code = -1, result = undefined } = {}
 ) {
   return {
     code,

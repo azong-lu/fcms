@@ -20,5 +20,6 @@ export function mapAuthToRoutes(auths: IAuth[]) {
     })
   }
   setRoute(auths)
+
   return allRoutes
 }

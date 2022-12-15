@@ -3,7 +3,8 @@ import { IGetTokenParams } from '@/store/user/type'
 
 enum IUrl {
   login = '/user/login',
-  userInfo = '/user/getUserInfo'
+  userInfo = '/user/getUserInfo',
+  logout = '/user/logout'
 }
 
 export function getTokenApi<T>(params: IGetTokenParams) {
@@ -16,6 +17,13 @@ export function getTokenApi<T>(params: IGetTokenParams) {
 export function getUserInfoApi() {
   return baseInstance.post({
     url: IUrl.userInfo,
+    data: {}
+  })
+}
+
+export function logoutApi() {
+  return baseInstance.post({
+    url: IUrl.logout,
     data: {}
   })
 }

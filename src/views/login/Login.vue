@@ -29,11 +29,28 @@ const form = reactive({
   password: ''
 })
 const formRef = ref<FormInstance>()
+const btnLoading = ref<boolean>(false)
 
 const handleSubmit = () => {
   formRef.value?.validate(async (res) => {
     if (res) {
-      userStore.getTokenAction({ ...form })
+      btnLoading.value = true
+      const { code, message: returnMsg } = await userStore.getTokenAction({
+        ...form
+      })
+      btnLoading.value = false
+      if (code === 200) {
+        await userStore.getUserInfoAction()
+        ElMessage({
+          message: '登录成功',
+          type: 'success'
+        })
+      } else {
+        ElMessage({
+          message: returnMsg,
+          type: 'error'
+        })
+      }
     }
   })
 }
@@ -50,10 +67,16 @@ const handleSubmit = () => {
           <el-input v-model="form.account" placeholder="请输入账号" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input v-model="form.password" placeholder="请输入用户名" />
+          <el-input
+            v-model="form.password"
+            placeholder="请输入用户名"
+            type="password"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleSubmit">登录</el-button>
+          <el-button type="primary" @click="handleSubmit" :loading="btnLoading"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>

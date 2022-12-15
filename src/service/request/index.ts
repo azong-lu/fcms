@@ -3,7 +3,6 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import { ElLoading, ElNotification } from 'element-plus'
 import type { IRequestConfig, RequestInterceptor, IResponse } from './type'
 import { getToken, hasToken, TokenPrefix } from '@/utils/auth'
-import { useRouter } from 'vue-router'
 import { showMessage } from './message'
 
 const DEFAULT_LOADING = true
@@ -19,19 +18,26 @@ class Request {
     this.interceptor = config.interceptor
     this.showLoading = DEFAULT_LOADING ?? true
     // 外面传入
-    // 请求成功全局拦截
+    // // 请求成功全局拦截
+
     this.instance.interceptors.request.use(
       this.interceptor?.requestIntercetor,
       this.interceptor?.requestIntercetorErr
     )
-    // 响应成功全局拦截
+    // // // 响应成功全局拦截
     this.instance.interceptors.response.use(
       this.interceptor?.responseIntercetor,
       this.interceptor?.responseIntercetorErr
     )
     // 所有实例全局拦截
-    this.instance.interceptors.request.use(
+    axios.interceptors.request.use(
       (config) => {
+        if (hasToken()) {
+          config.headers = {
+            ...config.headers,
+            Authorization: `${TokenPrefix}${getToken()}`
+          }
+        }
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -39,6 +45,7 @@ class Request {
             background: 'rgba(0, 0, 0, 0.5)'
           })
         }
+
         return config
       },
       (err) => {
@@ -46,21 +53,23 @@ class Request {
       }
     )
 
-    this.instance.interceptors.response.use(
+    axios.interceptors.response.use(
       (res) => {
-        this.showLoading = DEFAULT_LOADING
+        this.loading?.close()
         if (res.status === 200) {
-          return res.data
+          return res.data ?? {}
+        } else {
+          ElNotification({
+            title: 'Error',
+            message: showMessage(res.status),
+            type: 'error'
+          })
         }
-        ElNotification({
-          title: 'Error',
-          message: showMessage(res.status),
-          type: 'error'
-        })
-        return res
+
+        return res ?? {}
       },
       (err) => {
-        this.showLoading = DEFAULT_LOADING
+        this.loading?.close()
         const { response } = err
         ElNotification({
           title: 'Error',
@@ -79,14 +88,7 @@ class Request {
       if (config.interceptor?.requestIntercetor) {
         config = config.interceptor.requestIntercetor(config)
       }
-      if (hasToken()) {
-        config.headers = {
-          ...config.headers,
-          Authorization: `${TokenPrefix}${getToken()}`
-        }
-      } else {
-        useRouter().push('/login')
-      }
+
       if (config.showLoading === false) {
         this.showLoading = config.showLoading
       }
@@ -97,9 +99,9 @@ class Request {
             res = config.interceptor.responseIntercetor(res)
           }
           this.showLoading = DEFAULT_LOADING
-          const { data } = res
-          resolve(data)
-          return data
+
+          resolve(res as T)
+          return res
         })
         .catch((err) => {
           reject(err)
