@@ -16,14 +16,12 @@ export function getTokenApi<T>(params: IGetTokenParams) {
 
 export function getUserInfoApi() {
   return baseInstance.post({
-    url: IUrl.userInfo,
-    data: {}
+    url: IUrl.userInfo
   })
 }
 
 export function logoutApi() {
   return baseInstance.post({
-    url: IUrl.logout,
-    data: {}
+    url: IUrl.logout
   })
 }

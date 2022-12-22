@@ -10,6 +10,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { viteMockServe } from 'vite-plugin-mock'
+import viteImagemin from 'vite-plugin-imagemin'
+import progress from 'vite-plugin-progress'
 const pathSrc = path.resolve(__dirname, 'src')
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -57,7 +59,37 @@ export default defineConfig({
       threshold: 10240, //压缩前最小文件大小
       algorithm: 'gzip', //压缩算法
       ext: '.gz' //文件类型
-    })
+    }),
+    // 图片压缩
+    viteImagemin({
+      gifsicle: {
+        optimizationLevel: 7,
+        interlaced: false
+      },
+      mozjpeg: {
+        quality: 20
+      },
+      optipng: {
+        optimizationLevel: 7
+      },
+      pngquant: {
+        quality: [0.8, 0.9],
+        speed: 4
+      },
+      svgo: {
+        plugins: [
+          {
+            name: 'removeViewBox'
+          },
+          {
+            name: 'removeEmptyAttrs',
+            active: false
+          }
+        ]
+      }
+    }),
+    // 构建显示进度条
+    progress()
   ],
   resolve: {
     alias: [

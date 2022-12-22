@@ -12,7 +12,7 @@ function setToken(token: string) {
 }
 
 function removeToken() {
-  localStorage.removeItem(TokenPrefix)
+  localStorage.removeItem(Tokenkey)
 }
 
 export { TokenPrefix, hasToken, getToken, setToken, removeToken }

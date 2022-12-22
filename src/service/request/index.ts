@@ -30,7 +30,7 @@ class Request {
       this.interceptor?.responseIntercetorErr
     )
     // 所有实例全局拦截
-    axios.interceptors.request.use(
+    this.instance.interceptors.request.use(
       (config) => {
         if (hasToken()) {
           config.headers = {
@@ -53,9 +53,10 @@ class Request {
       }
     )
 
-    axios.interceptors.response.use(
+    this.instance.interceptors.response.use(
       (res) => {
         this.loading?.close()
+
         if (res.status === 200) {
           return res.data ?? {}
         } else {
@@ -92,7 +93,7 @@ class Request {
       if (config.showLoading === false) {
         this.showLoading = config.showLoading
       }
-      axios
+      this.instance
         .request<any, AxiosResponse<T>>(config)
         .then((res) => {
           if (config.interceptor?.responseIntercetor) {

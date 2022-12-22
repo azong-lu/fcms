@@ -21,10 +21,11 @@
     "noUnusedLocals": false,
     "noImplicitAny": false,
     "noImplicitThis": true,
+    "noEmit": true,
     "removeComments": false,
     "strictFunctionTypes": false,
     "baseUrl": "./",
-    "types": ["vite/client", "node", "element-plus/global"],
+    "types": ["node", "vite/client", "element-plus/global"],
     "typeRoots": ["./node_modules/@types/"],
     "paths": {
       "@/*": ["src/*"]
